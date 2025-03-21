@@ -1,5 +1,5 @@
 # Dimensional-Explorer
-~~ Second Attempt, if it works I'll delet the original ~~ <-- Done
+~~ Second Attempt, if it works I'll delete the original ~~ <-- Done
 
 Dimensional Explorer is a game I wanted to make since the start of last year, I have created an Alpha Build of the game (Which may or may not work due to my most recent change trying to implement an interaction system that works with TileMapLayer while having the character scenery be separated from the test level scenery.
 
