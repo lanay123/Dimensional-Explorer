@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb3xc0l1j5286"]
+
+[ext_resource type="Texture2D" uid="uid://ckrw14oxxh8jw" path="res://Tiles/TEST_TILES/LightsON.png" id="1_5lmky"]
+
+[node name="LightsOn" type="Sprite2D"]
+texture = ExtResource("1_5lmky")

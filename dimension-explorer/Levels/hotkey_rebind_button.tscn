@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://75hl0qvb1ppo"]
+
+[ext_resource type="Script" path="res://scripts/hotkey_rebind_button.gd" id="1_it32u"]
+[ext_resource type="FontFile" uid="uid://che1tg0djejc0" path="res://GUI/Font/Ldfcomicsansbold-zgma.ttf" id="2_lbesu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x22q3"]
+bg_color = Color(0.713518, 0.713518, 0.713518, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7q5yf"]
+bg_color = Color(0.150075, 0.150075, 0.150075, 1)
+
+[node name="Hotkey_Rebind_Button" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_it32u")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -22.5
+offset_right = 595.31
+offset_bottom = 22.5
+grow_vertical = 2
+scale = Vector2(0.995713, 1)
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.643137, 1, 1)
+theme_override_colors/font_outline_color = Color(0.956863, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_lbesu")
+theme_override_font_sizes/font_size = 32
+text = "ACTION"
+vertical_alignment = 3
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x22q3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7q5yf")
+toggle_mode = true
+text = "ACTION_KEY"
+
+[connection signal="toggled" from="HBoxContainer/Button" to="." method="_on_button_toggled"]

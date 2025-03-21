@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo4ro07y4ekmn"]
+
+[ext_resource type="Script" path="res://Levels/Interactables/light_bulb/light_bulb.tres.gd" id="1_7wanh"]
+[ext_resource type="Texture2D" uid="uid://ed60q453hlp3" path="res://Tiles/TEST_TILES/LightsOff.png" id="2_3nkg0"]
+[ext_resource type="Texture2D" uid="uid://ckrw14oxxh8jw" path="res://Tiles/TEST_TILES/LightsON.png" id="3_86rf0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vvyox"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3nkg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_86rf0")
+}],
+"loop": true,
+"name": &"light_bulb",
+"speed": 5.0
+}]
+
+[node name="LightBulb" type="Node2D"]
+script = ExtResource("1_7wanh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vvyox")
+animation = &"light_bulb"

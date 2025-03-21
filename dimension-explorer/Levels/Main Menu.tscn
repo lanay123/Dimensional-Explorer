@@ -1,0 +1,121 @@
+[gd_scene load_steps=11 format=3 uid="uid://04jb5kqeljrn"]
+
+[ext_resource type="FontFile" uid="uid://che1tg0djejc0" path="res://GUI/Font/Ldfcomicsansbold-zgma.ttf" id="1_2a2pg"]
+[ext_resource type="Script" path="res://scripts/Main_Menu.tres.gd" id="1_aovii"]
+[ext_resource type="Texture2D" uid="uid://direr5mu77k41" path="res://GUI/Fanfare/TITLE.png" id="2_3tb7q"]
+[ext_resource type="Texture2D" uid="uid://bx2l1mqlej3l1" path="res://GUI/Parallaxes/MenuParallax.png" id="2_pqqtw"]
+[ext_resource type="AudioStream" uid="uid://2xss1e70oqhm" path="res://Audio/BGM/T!T!3.mp3" id="5_tc8uv"]
+
+[sub_resource type="Theme" id="Theme_tk8n8"]
+default_font = ExtResource("1_2a2pg")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf0ds"]
+bg_color = Color(0.00159486, 0.224069, 0.820007, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6qnb"]
+bg_color = Color(0.596078, 0.819608, 1, 0.686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfbx6"]
+bg_color = Color(0.168627, 0.615686, 1, 0.686275)
+
+[sub_resource type="Theme" id="Theme_pljot"]
+default_font = ExtResource("1_2a2pg")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aovii")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -880.0
+offset_top = -670.0
+offset_right = 201.585
+offset_bottom = 457.735
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.96, 1)
+texture = ExtResource("2_pqqtw")
+stretch_mode = 1
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(-70, -159)
+scale = Vector2(1.66333, 1.37527)
+texture = ExtResource("2_3tb7q")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 308.0
+offset_top = -240.0
+offset_right = 414.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.4189, 2.97331)
+theme = SubResource("Theme_tk8n8")
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="MainOptions" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+localize_numeral_system = false
+theme_override_constants/separation = 12
+
+[node name="Start" type="Button" parent="MarginContainer/MainOptions"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit/EXIT")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yf0ds")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c6qnb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gfbx6")
+text = "START"
+
+[node name="Continue" type="Button" parent="MarginContainer/MainOptions"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_yf0ds")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c6qnb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gfbx6")
+text = "CONTINUE"
+
+[node name="Options" type="Button" parent="MarginContainer/MainOptions"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Exit/EXIT")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yf0ds")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c6qnb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gfbx6")
+text = "OPTIONS"
+
+[node name="Exit" type="VBoxContainer" parent="MarginContainer/MainOptions"]
+layout_mode = 2
+
+[node name="EXIT" type="Button" parent="MarginContainer/MainOptions/Exit"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Options")
+theme = SubResource("Theme_pljot")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yf0ds")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c6qnb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gfbx6")
+text = "EXIT"
+
+[node name="BGM_T!T!3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tc8uv")
+autoplay = true
+bus = &"BGM"
+
+[connection signal="pressed" from="MarginContainer/MainOptions/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/MainOptions/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/MainOptions/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/MainOptions/Exit/EXIT" to="." method="_on_exit_pressed"]

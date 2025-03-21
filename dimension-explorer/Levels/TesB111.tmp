@@ -1,0 +1,119 @@
+[gd_scene load_steps=17 format=3 uid="uid://coqiyj68i5fa7"]
+
+[ext_resource type="Texture2D" uid="uid://e4vua13dsna8" path="res://Sprites/CHARACTER_STANDING_DOWN.png" id="1_k511c"]
+[ext_resource type="Texture2D" uid="uid://b4c5xtqlfvuew" path="res://Sprites/CHARACTER_WALKING_DOWN1.png" id="2_tnqmu"]
+[ext_resource type="Texture2D" uid="uid://bvqqn8njs7hf6" path="res://Sprites/CHARACTER_WALKING_DOWN2.png" id="3_6vxp6"]
+[ext_resource type="Texture2D" uid="uid://ci34cwi7jyf3j" path="res://Sprites/CHARACTER_WALKING_LEFT1.png" id="4_66nc3"]
+[ext_resource type="Texture2D" uid="uid://cboxbp378ggyx" path="res://Sprites/CHARACTER_WALKING_LEFT2.png" id="5_ryvp2"]
+[ext_resource type="Texture2D" uid="uid://v8bggjga78vt" path="res://Sprites/CHARACTER_WALKING_RIGHT1.png" id="6_vrswa"]
+[ext_resource type="Texture2D" uid="uid://bao3mn8d13h3h" path="res://Sprites/CHARACTER_WALKING_RIGHT2.png" id="7_c8h5w"]
+[ext_resource type="Texture2D" uid="uid://bip57owopg0de" path="res://Sprites/CHARACTER_WALKING_UP1.png" id="8_t6vn5"]
+[ext_resource type="Texture2D" uid="uid://cwiuhgsqeilev" path="res://Sprites/CHARACTER_WALKING_UP2.png" id="9_mlxp4"]
+[ext_resource type="AudioStream" uid="uid://dhibvt0ggp5fc" path="res://Audio/BGM/T35T.mp3" id="11_p7fbc"]
+[ext_resource type="Texture2D" uid="uid://ed60q453hlp3" path="res://Tiles/TEST_TILES/LightsOff.png" id="11_tm2s0"]
+[ext_resource type="Script" path="res://Levels/turn_on.gd" id="12_xa8rk"]
+
+[sub_resource type="GDScript" id="GDScript_satxl"]
+script/source = "pass
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gyhfq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k511c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tnqmu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_k511c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6vxp6")
+}],
+"loop": true,
+"name": &"WALKING_DOWN",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_66nc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ryvp2")
+}],
+"loop": true,
+"name": &"WALKING_LEFT",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vrswa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_c8h5w")
+}],
+"loop": true,
+"name": &"WALKING_RIGHT",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_t6vn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mlxp4")
+}],
+"loop": true,
+"name": &"WALKING_UP",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xwca"]
+size = Vector2(25, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6mbi"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
+script = SubResource("GDScript_satxl")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_gyhfq")
+animation = &"WALKING_DOWN"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_3xwca")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(2.5, 2.5)
+metadata/_edit_group_ = true
+
+[node name="RayCast2D" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(16, 18)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_p7fbc")
+autoplay = true
+bus = &"BGM"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-96, 0)
+scale = Vector2(1.59, 1.59)
+shape = SubResource("RectangleShape2D_g6mbi")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-96, 0)
+texture = ExtResource("11_tm2s0")
+script = ExtResource("12_xa8rk")
+
+[connection signal="texture_changed" from="StaticBody2D/Sprite2D" to="StaticBody2D/Sprite2D" method="_on_texture_changed"]

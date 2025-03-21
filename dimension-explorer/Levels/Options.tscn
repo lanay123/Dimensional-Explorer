@@ -1,0 +1,218 @@
+[gd_scene load_steps=13 format=3 uid="uid://dm2lghddsopuo"]
+
+[ext_resource type="Texture2D" uid="uid://bx2l1mqlej3l1" path="res://GUI/Parallaxes/MenuParallax.png" id="1_80uio"]
+[ext_resource type="PackedScene" uid="uid://75hl0qvb1ppo" path="res://Levels/hotkey_rebind_button.tscn" id="2_cab5h"]
+[ext_resource type="FontFile" uid="uid://che1tg0djejc0" path="res://GUI/Font/Ldfcomicsansbold-zgma.ttf" id="2_duaeo"]
+[ext_resource type="PackedScene" uid="uid://4bgc8x51ki8l" path="res://Levels/window_mode_button.tscn" id="3_iqwky"]
+[ext_resource type="AudioStream" uid="uid://js0tpxple1io" path="res://Audio/BGM/0PT!0N5.mp3" id="4_pald2"]
+[ext_resource type="PackedScene" uid="uid://cjvqetptbp6ph" path="res://Levels/audio_slider_settings.tscn" id="4_wgltn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnwdc"]
+bg_color = Color(0.0164891, 0, 0.374134, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xxvby"]
+font_size = 32
+
+[sub_resource type="GDScript" id="GDScript_ojer8"]
+script/source = "extends VBoxContainer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_exit_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Levels/Main Menu.tscn\")
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_268jo"]
+bg_color = Color(0.772549, 0.556863, 0, 0.686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkgqj"]
+bg_color = Color(0.227451, 0.717647, 0, 0.686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgk42"]
+bg_color = Color(0.737255, 0, 0.0627451, 0.686275)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1269.0
+offset_top = -407.0
+offset_right = -185.88
+offset_bottom = 1223.29
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.08, 1)
+texture = ExtResource("1_80uio")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.637
+offset_top = -752.145
+offset_right = -3.63696
+offset_bottom = -640.145
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.56)
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.552, 0, 0.69, 1)
+theme_override_colors/font_outline_color = Color(0.9636, 0.000435872, 0.898358, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_duaeo")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_wnwdc")
+text = "OPTIONS"
+label_settings = SubResource("LabelSettings_xxvby")
+
+[node name="Exit" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 0
+offset_left = 391.346
+offset_top = 630.355
+offset_right = 514.346
+offset_bottom = 670.355
+scale = Vector2(1, 2.12)
+script = SubResource("GDScript_ojer8")
+
+[node name="Exit" type="Button" parent="TextureRect/Exit"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_hover_pressed_color = Color(0.733333, 0.94902, 1, 1)
+theme_override_colors/font_hover_color = Color(2.88785e-06, 0.915259, 0.977294, 1)
+theme_override_colors/font_pressed_color = Color(0.733644, 0.950338, 1, 1)
+theme_override_colors/font_color = Color(0.534483, 0.643048, 1, 1)
+theme_override_colors/font_outline_color = Color(0.764071, 0, 0.114852, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/h_separation = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_268jo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qkgqj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mgk42")
+text = "EXIT
+"
+
+[node name="Short_Tutorial" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 373.077
+offset_top = 202.355
+offset_right = 1055.08
+offset_bottom = 487.355
+scale = Vector2(0.269231, 0.4)
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.552, 0, 0.69, 1)
+theme_override_colors/font_outline_color = Color(0.9636, 0.000435872, 0.898358, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_duaeo")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_wnwdc")
+text = "To Move either press W/A/S/D or the 
+Arrow Keys. Press C to 'C' the Menu
+
+The Objective is to Visit as many dimensions
+and discover as many things as possible.
+Good Luck Adventurer"
+label_settings = SubResource("LabelSettings_xxvby")
+
+[node name="Keybinds" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 370.355
+offset_right = 415.0
+offset_bottom = 498.355
+scale = Vector2(0.508252, 1.08682)
+theme_override_constants/separation = 64
+
+[node name="Hotkey_Rebind_Button2" parent="TextureRect/Keybinds" instance=ExtResource("2_cab5h")]
+layout_mode = 2
+action_name = "accept"
+
+[node name="Hotkey_Rebind_Button" parent="TextureRect/Keybinds" instance=ExtResource("2_cab5h")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(489.975, 65.12)
+layout_mode = 0
+offset_left = 578.366
+offset_top = 152.355
+offset_right = 1087.76
+offset_bottom = 217.475
+scale = Vector2(0.573, 1.025)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/ScrollContainer"]
+layout_mode = 2
+
+[node name="Window_Mode_Button" parent="TextureRect/ScrollContainer/VBoxContainer" instance=ExtResource("3_iqwky")]
+layout_mode = 2
+
+[node name="Sound_Controller" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 0
+offset_left = 372.115
+offset_top = 454.0
+offset_right = 412.115
+offset_bottom = 606.0
+scale = Vector2(0.791126, 0.894593)
+
+[node name="Audio_Slider_Settings" parent="TextureRect/Sound_Controller" instance=ExtResource("4_wgltn")]
+custom_minimum_size = Vector2(0, 48.88)
+layout_mode = 2
+
+[node name="Audio_Slider_Settings2" parent="TextureRect/Sound_Controller" instance=ExtResource("4_wgltn")]
+custom_minimum_size = Vector2(0, 48.88)
+layout_mode = 2
+bus_name = "SFX"
+
+[node name="Audio_Slider_Settings3" parent="TextureRect/Sound_Controller" instance=ExtResource("4_wgltn")]
+custom_minimum_size = Vector2(0, 48.88)
+layout_mode = 2
+bus_name = "AMB"
+
+[node name="Audio_Slider_Settings4" parent="TextureRect/Sound_Controller" instance=ExtResource("4_wgltn")]
+custom_minimum_size = Vector2(0, 48.88)
+layout_mode = 2
+bus_name = "BGM"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pald2")
+autoplay = true
+bus = &"BGM"
+
+[connection signal="pressed" from="TextureRect/Exit/Exit" to="TextureRect/Exit" method="_on_exit_pressed"]
